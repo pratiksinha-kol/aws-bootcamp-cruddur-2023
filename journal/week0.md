@@ -14,5 +14,9 @@
 
  - Explored Service and Personal Health Dashboard to determine if any AWS service is currently affected or if anyone affect my working environment. Enabled SNS notifications using AWS Eventbridge service ![AWS Health Dashboard Events](https://user-images.githubusercontent.com/125117631/218819183-8c84748e-83d3-47b4-b28c-4f5267778919.png)
 
- - Setup a AWS architecture using Lucid ![Week 0 Task](https://user-images.githubusercontent.com/125117631/218819670-e87980eb-b6bc-45a0-baea-43bb77d91050.jpeg)(https://lucid.app/lucidchart/9052c687-db20-41c1-8aa7-75f090c9af92/edit?view_items=E4axqhGh8khR&invitationId=inv_3c85fbd6-a052-4a71-bff6-464adf1afd2b)
+ - [Setup a AWS architecture using Lucid - click here](https://lucid.app/lucidchart/9052c687-db20-41c1-8aa7-75f090c9af92/edit?view_items=E4axqhGh8khR&invitationId=inv_3c85fbd6-a052-4a71-bff6-464adf1afd2b) ![Week 0 Task](https://user-images.githubusercontent.com/125117631/218819670-e87980eb-b6bc-45a0-baea-43bb77d91050.jpeg)
  
+ ## Napkin Design
+ [Architectural of a library that rents books and also offers buyers to purchase books - click here](https://lucid.app/lucidchart/c1352cd0-1cc1-4f7d-a01f-88159a8f44ff/edit?viewport_loc=60%2C-188%2C2220%2C1038%2C0_0&invitationId=inv_37362de5-322d-41f1-9197-5dcd78822bd9) 
+![Profit making library 1](https://user-images.githubusercontent.com/125117631/218836622-5444206a-5901-44c9-a737-276cca28335e.jpeg)
+
