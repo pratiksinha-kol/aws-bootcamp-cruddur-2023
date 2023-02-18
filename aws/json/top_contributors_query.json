@@ -1,0 +1,9 @@
+{
+    "MetricDataQueries": [{
+        "Id": "e1",
+        "Expression": "SORT(RATE(SEARCH('{AWS/Billing,Currency,ServiceName} AWS/Billing ServiceName', 'Maximum', 86400))*86400, MAX, DESC, 10)",
+        "Label": "DailyEstimatedCharges",
+        "Period": 86400
+    }],
+    "ScanBy": "TimestampAscending"
+}
