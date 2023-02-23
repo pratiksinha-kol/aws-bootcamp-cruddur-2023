@@ -23,11 +23,11 @@
 
 ![Dockerfile creation on ec2](https://user-images.githubusercontent.com/125117631/220993778-62e31f5f-ecda-486e-add2-368cef025289.png)
 
-- **Ran the sample Hello-world Docker file**
+- **Build the sample Hello-world Docker file**
 
  ![Sample Hello World on ec2](https://user-images.githubusercontent.com/125117631/220994838-7cfbb1ce-6189-4152-adb0-0d54679a7e54.png)
 
-- **Ran the sample Hello-world Docker file**
+- **Ran the sample Hello-world Docker file and tested on browser using Public IP**
 
  ![Sample Hello World on ec2 saml](https://user-images.githubusercontent.com/125117631/220994695-0477541a-6258-40a4-8c40-6f7069799566.png)
  
@@ -50,7 +50,7 @@
 
 ![Cruddur docker build on ec2](https://user-images.githubusercontent.com/125117631/221002543-44a49c23-f178-4b70-8ed3-2d90d8b34918.png)
 
-- **Installed docker compose** ```sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose && sudo chmod +x /usr/bin/docker-compose && docker-compose --version```
+- **Installed docker compose on EC2** ```sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose && sudo chmod +x /usr/bin/docker-compose && docker-compose --version```
 [REF LINK](https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9)
 
 - **Ran the Cruddur app**
