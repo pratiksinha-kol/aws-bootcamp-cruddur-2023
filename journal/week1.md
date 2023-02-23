@@ -60,6 +60,11 @@
 ![Cruddur app on ec2 22](https://user-images.githubusercontent.com/125117631/221002657-e40d39dd-1a3f-4bf8-b81e-ce333732d951.png)
 
 - **Pushing Docker image to Docker hub public repository after tagging each of them**
+
 ![Docker Hub push](https://user-images.githubusercontent.com/125117631/221003264-3c89388a-10b3-4d0f-8626-5f1955c83d11.png)
 ```docker image push```
 ```docker tag IMAGE_ID REPOSITORY/VERSION```
+
+- **While running and eventually stopping Docker container locally, encountered that volumes were still *in-use* on Docker Destop app, even after confirming that the container was stopped. To rectify this issue, used following commands** [REF LINK](https://stackoverflow.com/questions/34658836/docker-is-in-volume-in-use-but-there-arent-any-docker-containers)
+```docker container prune```
+```docker volume prune```
