@@ -48,7 +48,14 @@
 
 - **Cloned Cruddur app in /home directory of EC2. Learned that docker-compose is unavailable, even after installing Docker on the instance and thus needs to be installed separately. It was required to build Cruddur docker container** ```docker-compose up```
 
+![Cruddur docker build on ec2](https://user-images.githubusercontent.com/125117631/221002543-44a49c23-f178-4b70-8ed3-2d90d8b34918.png)
+
 - **Installed docker compose** ```sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose && sudo chmod +x /usr/bin/docker-compose && docker-compose --version```
 [REF LINK](https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9)
 
-- 
+- **Ran the Cruddur app**
+
+![Cruddur app on ec2](https://user-images.githubusercontent.com/125117631/221002672-7ff159d7-9119-4358-b010-f9f64e604776.png)
+![Cruddur app on ec2 11](https://user-images.githubusercontent.com/125117631/221002677-670bae28-79e9-48b0-be25-683441d122c2.png)
+![Cruddur app on ec2 22](https://user-images.githubusercontent.com/125117631/221002657-e40d39dd-1a3f-4bf8-b81e-ce333732d951.png)
+
