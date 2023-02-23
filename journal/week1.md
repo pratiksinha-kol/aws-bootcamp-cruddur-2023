@@ -17,7 +17,7 @@
 
 - **Launched EC2 Instance with SSM Role Permission Unlimited burstable t2.micro *(No key pair was used)*** 
 
-- **Installing Docker on launched Amazon Linux 2** [REF USED](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html)
+- **Installing Docker on launched Amazon Linux 2** [REF LINK](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html)
 
 - **Created Dockerfile on the launched t2 instance** 
 
@@ -30,6 +30,8 @@
 - **Ran the sample Hello-world Docker file**
 
  ![Sample Hello World on ec2 saml](https://user-images.githubusercontent.com/125117631/220994695-0477541a-6258-40a4-8c40-6f7069799566.png)
+ 
+- **Logged into Docker from EC2 CLI to pulled Docker and for future push of Docker images** ```docker login -u```
 
 - **Pulled few Docker images on launched Amazon Linux 2** 
 
@@ -42,4 +44,11 @@
 
 - **Exposed port 80 using the following run command. Used Public IPV4 address of the EC2 instance to verify the running status of the container** ```docker run -t -i -p 80:80 Repository-Tag```
 
-- ****
+- **Install Git In AWS EC2 Instance** [REF LINK](https://cloudaffaire.com/how-to-install-git-in-aws-ec2-instance/)
+
+- **Cloned Cruddur app in /home directory of EC2. Learned that docker-compose is unavailable, even after installing Docker on the instance and thus needs to be installed separately. It was required to build Cruddur docker container** ```docker-compose up```
+
+- **Installed docker compose** ```sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose && sudo chmod +x /usr/bin/docker-compose && docker-compose --version```
+[REF LINK](https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9)
+
+- 
