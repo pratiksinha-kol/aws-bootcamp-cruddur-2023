@@ -40,7 +40,7 @@
 - **Ran container based on the pulled Docker images**
 
 ![Docker pull image from Docker hub run on ec2](https://user-images.githubusercontent.com/125117631/220995769-b9b9da1d-97c2-4745-8318-b8896e15ece5.png)
-![Sample Hello World on ec2 saml](https://user-images.githubusercontent.com/125117631/220995800-aa8232b5-29d6-4c91-ab00-a9560443f56d.png)
+![Sample WebApp on ec2](https://user-images.githubusercontent.com/125117631/221003160-9cacbb72-2c40-4f9e-8662-fa0d1bcb7c58.png)
 
 - **Exposed port 80 using the following run command. Used Public IPV4 address of the EC2 instance to verify the running status of the container** ```docker run -t -i -p 80:80 Repository-Tag```
 
@@ -59,3 +59,7 @@
 ![Cruddur app on ec2 11](https://user-images.githubusercontent.com/125117631/221002677-670bae28-79e9-48b0-be25-683441d122c2.png)
 ![Cruddur app on ec2 22](https://user-images.githubusercontent.com/125117631/221002657-e40d39dd-1a3f-4bf8-b81e-ce333732d951.png)
 
+- **Pushing Docker image to Docker hub public repository after tagging each of them**
+![Docker Hub push](https://user-images.githubusercontent.com/125117631/221003264-3c89388a-10b3-4d0f-8626-5f1955c83d11.png)
+```docker image push```
+```docker tag IMAGE_ID REPOSITORY/VERSION```
