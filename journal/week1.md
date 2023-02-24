@@ -19,6 +19,16 @@
 
 - **Installing Docker on launched Amazon Linux 2** [REF LINK](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html)
 
+  ```sudo yum update -y ``` *Update the installed packages and package cache on your instance*
+
+  ```sudo amazon-linux-extras install docker``` *Install the most recent Docker Engine package.*
+
+  ```sudo service docker start``` *Start the Docker service*
+
+  ```sudo systemctl enable docker ``` *ensure that the Docker daemon starts after each system reboot.* 
+
+  ```sudo usermod -a -G docker ec2-user ``` *Add the ec2-user to the docker group so you can execute Docker commands without using sudo*
+  
 - **Created Dockerfile on the launched t2 instance** 
 
 ![Dockerfile creation on ec2](https://user-images.githubusercontent.com/125117631/220993778-62e31f5f-ecda-486e-add2-368cef025289.png)
