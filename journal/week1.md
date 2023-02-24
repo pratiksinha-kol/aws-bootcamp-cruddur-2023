@@ -68,3 +68,38 @@
 - **While running and eventually stopping Docker container locally, encountered that volumes were still *in-use* on Docker Destop app, even after confirming that the container was stopped. To rectify this issue, used following commands** [REF LINK](https://stackoverflow.com/questions/34658836/docker-is-in-volume-in-use-but-there-arent-any-docker-containers)
 ```docker container prune```
 ```docker volume prune```
+
+- **Managed to connect backend by changing Environmental Variables**
+```yml
+backend-flask:
+    environment:
+      FRONTEND_URL: "http://localhost:3000"
+      BACKEND_URL: "http://localhost:4567"
+    build: ./backend-flask
+    ports:
+      - "4567:4567"
+    volumes:
+      - ./backend-flask:/backend-flask
+```
+
+```yml
+frontend-react-js:
+    environment:
+      REACT_APP_BACKEND_URL: "http://localhost:4567"
+    build: ./frontend-react-js
+    ports:
+      - "3000:3000"
+```
+![1](https://user-images.githubusercontent.com/125117631/221200879-0a832d71-19ea-4483-977c-91b51bdc8cf9.png)
+
+![2](https://user-images.githubusercontent.com/125117631/221200917-8d11c407-48da-4f4e-bac1-81bc2806d681.png)
+
+![3](https://user-images.githubusercontent.com/125117631/221200950-2a251b1c-5299-457a-8fcb-47d4acc7263e.png)
+
+![4](https://user-images.githubusercontent.com/125117631/221200981-1572cccb-0bc6-435c-ab30-3b2096c954b1.png)
+
+![5](https://user-images.githubusercontent.com/125117631/221201008-35410da5-86de-4e53-84da-d4eb7c93fb6a.png)
+
+![6](https://user-images.githubusercontent.com/125117631/221201025-8b041e3f-32ed-453c-b329-e776f272cdeb.png)
+
+![7](https://user-images.githubusercontent.com/125117631/221201050-b1720636-9769-449b-8913-3e7030dc7cd3.png)
