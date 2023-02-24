@@ -103,3 +103,22 @@ frontend-react-js:
 ![6](https://user-images.githubusercontent.com/125117631/221201025-8b041e3f-32ed-453c-b329-e776f272cdeb.png)
 
 ![7](https://user-images.githubusercontent.com/125117631/221201050-b1720636-9769-449b-8913-3e7030dc7cd3.png)
+
+- **Tried implementing Health Check on docker-compose, but was unsuccessful. Getting an error**
+
+    *services.healthcheck Additional property interval is not allowed*
+
+    Reference Used 
+    [Link 1](https://medium.com/geekculture/how-to-successfully-implement-a-healthcheck-in-docker-compose-efced60bc08e)
+    [Link 2](https://nickjanetakis.com/blog/docker-tip-85-define-healthcheck-in-your-docker-compose-file)
+    
+  *Also tried implementing Health on Dockerfile of Frontend-react, but still encountered the same aforementioned error*  
+  ```
+  FROM node:16.18
+  ENV PORT=3000
+  COPY . /frontend-react-js
+  WORKDIR /frontend-react-js
+  RUN npm install
+  EXPOSE ${PORT}
+  HEALTHCHECK CMD curl --fail http://localhost:3000 || exit 1 
+  ```
