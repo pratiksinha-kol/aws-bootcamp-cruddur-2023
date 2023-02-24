@@ -106,7 +106,7 @@ frontend-react-js:
 
 - **Tried implementing Health Check on docker-compose, but was unsuccessful. Getting an error**
 
-    *services.healthcheck Additional property interval is not allowed*
+    > *services.healthcheck Additional property interval is not allowed*
 
     Reference Used 
     [Link 1](https://medium.com/geekculture/how-to-successfully-implement-a-healthcheck-in-docker-compose-efced60bc08e)
