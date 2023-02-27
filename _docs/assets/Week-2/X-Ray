@@ -1,0 +1,10 @@
+
+
+Source: https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md
+
+# Ran on CLI for X-Ray Sampling
+# CLI: aws xray create-group \ --group-name "Cruddur" --filter-expression "service(\"backend-flask\")"
+
+#Create sampling for x-ray
+# CLI: aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
+# On Cloudwatch create sample by ---> CloudWatch --> Settings --> X-Ray traces --> Sampling rules (View settings) --> Create sampling rule
