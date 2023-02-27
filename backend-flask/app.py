@@ -52,11 +52,16 @@ tracer = trace.get_tracer(__name__)
 # AWS X-Ray ------->
 xray_url = os.getenv("AWS_XRAY_URL")
 xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
+
+
+
+app = Flask(__name__)
+
+# AWS X-Ray ------->
 XRayMiddleware(app, xray_recorder)
 
 # Initialize automatic instrumentation with Flask
 #HONEYCOMB ----------> 
-app = Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 
@@ -115,7 +120,7 @@ def data_create_message():
 
 @app.route("/api/activities/home", methods=['GET'])
 def data_home():
-  data = HomeActivities.run(logger=LOGGER)
+  data = HomeActivities.run()
   return data, 200
 
 @app.route("/api/activities/notifications", methods=['GET'])
