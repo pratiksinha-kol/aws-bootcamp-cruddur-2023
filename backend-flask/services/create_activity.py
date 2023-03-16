@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime, timedelta, timezone
-from db.lib import query_commit, print_sql_err
+from lib.db import db
 
 class CreateActivity:
   def run(message, user_handle, ttl):

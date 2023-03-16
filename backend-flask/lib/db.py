@@ -23,9 +23,9 @@ class Db:
 
 # When we want to return a json objects
 
-    def query_array_json(self, sql):
+    def query_array_json(self,sql):
         print('SQL STATEMENT [Array]================')
-        print(sql + "\n")
+        print(sql)
         print("")
 
         wrapped_sql = self.query_wrap_array(sql)
@@ -38,9 +38,9 @@ class Db:
                 return json[0]
 
 # When we want to return array of json objects
-    def query_object_json(self, sql):
+    def query_object_json(self,sql):
         print('SQL STATEMENT [object]================')
-        print(sql + "\n")
+        print(sql)
         wrapped_sql = self.query_wrap_object(sql)
         with self.pool.connection() as conn:
             with conn.cursor() as cur:
@@ -50,7 +50,7 @@ class Db:
                 json = cur.fetchone()
                 return json[0]
 
-    def query_wrap_object(self, template):
+    def query_wrap_object(self,template):
         sql = f"""
     (SELECT COALESCE(row_to_json(object_row),'{{}}'::json) FROM (
     {template}
@@ -58,7 +58,7 @@ class Db:
   """
         return sql
 
-    def query_wrap_array(self, template):
+    def query_wrap_array(self,template):
         sql = f"""
     (SELECT COALESCE(array_to_json(array_agg(row_to_json(array_row))),'[]'::json) FROM (
     {template}
@@ -66,7 +66,7 @@ class Db:
   """
         return sql
 
-    def print_sql_err(self, err):
+    def print_sql_err(self,err):
         # get details about the exception
         err_type, err_obj, traceback = sys.exc_info()
 
