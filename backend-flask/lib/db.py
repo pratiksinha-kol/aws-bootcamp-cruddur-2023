@@ -1,6 +1,6 @@
 from psycopg_pool import ConnectionPool
 import os
-
+import re
 
 class Db:
     def __init__(self):
@@ -10,22 +10,44 @@ class Db:
         connection_url = os.getenv("CONNECTION_URL")
         self.pool = ConnectionPool(connection_url)
 
-# When we want to commit like insert
-    def query_commit(self):
+    
+    def query_commit(self,sql,*kwargs):
+        print('SQL STATEMENT [Commit with returning id]================')
+        print(sql + "\n")
+
+        pattern = r"\bRETURNING\b"
+        is_returning_id = re.search(pattern, sql)
+
         try:
             conn = self.pool.connection()
             cur = conn.cursor()
-            cur.execute(sql)
+            cur.execute(sql,kwargs)
+            if is_returning_id:
+                returning_id = cur.fetchone()[0]
             conn.commit()
+            if is_returning_id:
+                return returning_id
         except Exception as err:
             self.print_sql_err(err)
-            # conn.rollback()
+            # conn.rollback()    
+
+# # When we want to commit like insert
+#     def query_commit(self,sql,*args):
+#         print('SQL STATEMENT [Commit]================')
+#         try:
+#             conn = self.pool.connection()
+#             cur = conn.cursor()
+#             cur.execute(sql)
+#             conn.commit()
+#         except Exception as err:
+#             self.print_sql_err(err)
+#             # conn.rollback()
 
 # When we want to return a json objects
 
     def query_array_json(self,sql):
         print('SQL STATEMENT [Array]================')
-        print(sql)
+        print(sql + "\n")
         print("")
 
         wrapped_sql = self.query_wrap_array(sql)
@@ -85,4 +107,4 @@ class Db:
         print("pgcode:", err.pgcode, "\n")
 
 
-db = Db
+db = Db ()

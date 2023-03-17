@@ -11,8 +11,6 @@ def lambda_handler(event, context):
     user_handle = user['preferred_username']
 
     try:
-        
-
         sql = f"""
         INSERT INTO users (
             display_name, 
@@ -20,21 +18,20 @@ def lambda_handler(event, context):
             email,
             cognito_user_id
             )
-        VALUES(
-            '{user_display_name}',
-            '{user_email}', 
-            '{user_handle}', 
-            '{user_cognito_id}'
-        )
+        VALUES(%s,%s,%s,%s)
         """
         
         print('SQL =========')
         print(sql)
-        
         conn = psycopg2.connect(os.getenv('CONNECTION_URL'))
         cur = conn.cursor()
-        
-        cur.execute(sql)
+        params = [
+            user_display_name,
+            user_email, 
+            user_handle, 
+            user_cognito_id
+        ]
+        cur.execute(sql,*params)
         conn.commit()
 
     except (Exception, psycopg2.DatabaseError) as error:
