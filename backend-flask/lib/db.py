@@ -1,27 +1,45 @@
 from psycopg_pool import ConnectionPool
 import os
 import re
+import sys
+from flask import current_app as app
+
 
 class Db:
     def __init__(self):
         self.init_pool()
 
+    def template(self,name):
+      template_path = os.path.join(app.root_path, 'db', 'sql', name+'.sql')
+      with open(template_path, 'r') as f:
+          template_content = f.read()
+      return template_content
+    
     def init_pool(self):
         connection_url = os.getenv("CONNECTION_URL")
         self.pool = ConnectionPool(connection_url)
 
     
-    def query_commit(self,sql,*kwargs):
-        print('SQL STATEMENT [Commit with returning id]================')
+    def print_sql(self,title,sql):
+      
+      cyan = '\033[96m'
+      no_color = '\033[0m'
+      print("\n")
+      print(f'{cyan} SQL STATEMENT -[{title}]================{no_color}')  
+      print(sql + "\n")
+
+    def query_commit(self,sql,params):
+        self.print_sql('Commit with returning id', sql)
         print(sql + "\n")
 
+    
         pattern = r"\bRETURNING\b"
         is_returning_id = re.search(pattern, sql)
 
         try:
-            conn = self.pool.connection()
+          with self.pool.connection() as conn:
             cur = conn.cursor()
-            cur.execute(sql,kwargs)
+            cur.execute(sql,params)
             if is_returning_id:
                 returning_id = cur.fetchone()[0]
             conn.commit()
@@ -100,7 +118,7 @@ class Db:
         print("psycopg traceback:", traceback, "-- type:", err_type)
 
         # psycopg2 extensions.Diagnostics object attribute
-        print("\nextensions.Diagnostics:", err.diag)
+        #print("\nextensions.Diagnostics:", err.diag)
 
         # print the pgcode and pgerror exceptions
         print("pgerror:", err.pgerror)
