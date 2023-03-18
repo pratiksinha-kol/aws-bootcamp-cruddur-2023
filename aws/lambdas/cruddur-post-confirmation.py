@@ -12,7 +12,7 @@ def lambda_handler(event, context):
 
     try:
         sql = f"""
-        INSERT INTO users (
+        INSERT INTO public.users (
             display_name, 
             handle, 
             email,
@@ -25,12 +25,12 @@ def lambda_handler(event, context):
         print(sql)
         conn = psycopg2.connect(os.getenv('CONNECTION_URL'))
         cur = conn.cursor()
-        params = [
+        params = {
             user_display_name,
             user_email, 
             user_handle, 
             user_cognito_id
-        ]
+        }
         cur.execute(sql,*params)
         conn.commit()
 
