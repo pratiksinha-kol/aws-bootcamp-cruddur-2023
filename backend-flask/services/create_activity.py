@@ -65,5 +65,5 @@ class CreateActivity:
     }
       
     )
-    query_commit(sql)
+    #query_commit(sql)
     
