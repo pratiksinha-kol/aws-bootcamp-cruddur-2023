@@ -2,11 +2,11 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- forcefully drop our tables if they already exist
-DROP TABLE IF EXISTS public.users cascade;
+DROP TABLE IF EXISTS public.users;
 DROP TABLE IF EXISTS public.activities;
 
 CREATE TABLE public.users (
-  uuid UUID default uuid_generate_v4() primary key,
+  uuid UUID default uuid_generate_v4() PRIMARY KEY,
   display_name text NOT NULL,
   email text NOT NULL,
   handle text NOT NULL,
@@ -15,8 +15,8 @@ CREATE TABLE public.users (
 );
 
 CREATE TABLE public.activities (
-  uuid UUID default uuid_generate_v4() primary key,
-  user_uuid UUID REFERENCES public.users(uuid) NOT NULL,
+  uuid UUID default uuid_generate_v4() PRIMARY KEY,
+  user_uuid UUID NOT NULL,
   message text NOT NULL,
   replies_count integer default 0,
   reposts_count integer default 0,
