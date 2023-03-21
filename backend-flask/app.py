@@ -155,8 +155,8 @@ def data_message_groups():
             app.logger.debug('Authenticated')
             app.logger.debug(claims)
             cognito_user_id = claims['sub']
-            data = HomeActivities.run(cognito_user_id=cognito_user_id)
-            model = MessageGroups.run(user_handle=user_handle)
+            model = HomeActivities.run(cognito_user_id=cognito_user_id)
+            
             if model['errors'] is not None:
                 return model['errors'], 422
             else:
@@ -171,7 +171,7 @@ def data_message_groups():
             app.logger.debug(e)
             return {}, 401
 
-    user_handle = 'andrewbrown'
+    
 
 
 
