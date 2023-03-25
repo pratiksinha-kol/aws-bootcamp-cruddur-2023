@@ -1,7 +1,7 @@
 import './HomeFeedPage.css';
 import React from "react";
 
-import { Auth } from 'aws-amplify';
+// import { Auth } from 'aws-amplify';
 
 import DesktopNavigation  from '../components/DesktopNavigation';
 import DesktopSidebar     from '../components/DesktopSidebar';
@@ -42,14 +42,6 @@ export default function HomeFeedPage() {
     }
   };
 
-  
-
-
-// check when the page loads if we are authenicated
-React.useEffect(()=>{
-  loadData();
-  checkAuth(setUser);
-}, [])
 
   React.useEffect(()=>{
     //prevents double call
@@ -57,7 +49,7 @@ React.useEffect(()=>{
     dataFetchedRef.current = true;
 
     loadData();
-    checkAuth();
+    checkAuth(setUser);
   }, [])
 
   return (
