@@ -46,7 +46,7 @@ class Db:
       print(sql,params)
 
     def query_commit(self,sql,params={}):
-      self.print_sql('Commit with returning id', sql)
+      self.print_sql('Commit with returning id', sql,params)
       print(sql + "\n")
 
     
