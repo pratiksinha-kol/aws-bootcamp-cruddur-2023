@@ -20,7 +20,7 @@ def lambda_handler(event, context):
   if pk.startswith('MSG#'):
     group_uuid = pk.replace("MSG#","")
     message = event['Records'][0]['dynamodb']['NewImage']['message']['S']
-    print("GRUP ===>",group_uuid,message)
+    print("GROUP ===>",group_uuid,message)
 
     table_name = 'cruddur-messages'
     index_name = 'message-group-sk-index'
