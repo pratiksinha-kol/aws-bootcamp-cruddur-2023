@@ -2,13 +2,13 @@
 
 ## Homework Task Performed for Week 5
 
-- **Added Python in ```requirements.txt```**
+- **Added Python in [```requirements.txt```](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/blob/main/backend-flask/requirements.txt)**
 ** **
 ```
 boto3
 ```
 
-- **Created utility scripts for Relational Database**
+- **Created utility [```scripts```](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/tree/main/backend-flask/bin/db) for Relational Database**
 ** **
 
 ```
@@ -29,7 +29,7 @@ source "$bin_path/db/seed"
 python "$bin_path/db/update_cognito_user_ids"
 ```
 
-- **Created utility scripts for DynamoDB Database**
+- **Created utility [```scripts```](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/tree/main/backend-flask/bin/ddb) for DynamoDB Database**
 ** **
 [```schema-load```](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/blob/main/backend-flask/bin/ddb/schema-load)
 [```seed```](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/blob/main/backend-flask/bin/ddb/seed)
