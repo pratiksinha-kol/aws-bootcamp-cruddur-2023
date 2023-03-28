@@ -62,9 +62,17 @@ python "$bin_path/db/update_cognito_user_ids"
 - **Created [Lambda](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/blob/main/aws/lambdas/cruddur-messaging-stream.py) function and inculcated it on DynamoDB stream as trigger**
 ** **
 
+![LAMBDA DYNAMDB](https://user-images.githubusercontent.com/125117631/228153601-c2b3868c-8466-4b69-9f20-3ffa095b97a4.png)
+
+![LAMBDA DYNAMDB   TGG](https://user-images.githubusercontent.com/125117631/228153630-c36651fa-8405-49ba-a2fa-1d555a8e88c3.png)
+
+
 - **Implemented message with ```UUID```**
 
 ![2](https://user-images.githubusercontent.com/125117631/228143272-1d8d2eb6-3098-41d6-b6db-e69d3e1d18ba.png)
 
 - **Verified on CloudWatch logs to see it is working properly and not throwing any error**
 ** **
+
+![CloudWatch Lgs](https://user-images.githubusercontent.com/125117631/228154198-8f9dd9a2-abce-4aeb-a013-f8f45ca6b317.png)
+
