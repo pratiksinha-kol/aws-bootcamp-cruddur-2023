@@ -93,6 +93,9 @@ RequestsInstrumentor().instrument()
 # Rollbar init code
 rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
 
+@app.route('/api/health-check')
+def health_check():
+  return {'success': True}, 200
 
 @app.before_first_request
 def init_rollbar():
