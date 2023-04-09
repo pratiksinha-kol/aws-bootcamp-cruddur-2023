@@ -26,5 +26,16 @@
 
 ![ALB Rules 2](https://user-images.githubusercontent.com/125117631/230783604-c7bcc7f1-07bc-40e2-89c1-0aff7be244fe.png)
 
-- **Modified CORS by ensuring that traffic only comes from specific Route53 domain**
+- **Modified CORS by ensuring that traffic only comes from specific Route53 domain by building specific Docker image**
 ** **
+```
+docker build \
+--build-arg REACT_APP_BACKEND_URL="https://api.pratiksinha.link/" \
+--build-arg REACT_APP_AWS_PROJECT_REGION="$AWS_DEFAULT_REGION" \
+--build-arg REACT_APP_AWS_COGNITO_REGION="$AWS_DEFAULT_REGION" \
+--build-arg REACT_APP_AWS_USER_POOLS_ID="us-east-1_zzzzzzzzzzzz" \
+--build-arg REACT_APP_CLIENT_ID="xxxxxxxxxxxxxxxxxxxxx" \
+-t frontend-react-js \
+-f Dockerfile.prod \
+.
+```
