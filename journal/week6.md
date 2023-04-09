@@ -30,7 +30,7 @@ aws ecr create-repository \
 
 ![ECR Repositories](https://user-images.githubusercontent.com/125117631/230785305-33953fff-7199-4f8c-94b2-8375c9f2b6f3.png)
 
-- **Created task definitions for frontend and backend**
+- **Register task definitions for frontend and backend**
 ** **
 
 ```
@@ -67,7 +67,19 @@ docker push $ECR_BACKEND_FLASK_URL:latest
 
 - **Created [bash scripts](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/tree/main/bin) to ensure easy work for ECR and ECS**
 
-- **Refactored bin directory and secured Flask so that it doesn't run in debug mode**
+- **Refactored [bin directory](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/tree/main/bin) and secured Flask so that it doesn't run in debug mode**
+
+
+- **Start ECS Fargate Service for frontend and backend (Also Created [bash script](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/blob/main/bin/backend/run) for easy access)**
+** **
+
+```sh
+aws ecs create-service --cli-input-json file://aws/json/service-backend-flask.json
+```
+
+```sh
+aws ecs create-service --cli-input-json file://aws/json/service-frontend-react-js.json
+```
 
 - **Implemented Service Connect for frontend and backend (Created bash script for easy access)**
 ** **
@@ -117,6 +129,7 @@ def health_check():
 
 ![Container Insights](https://user-images.githubusercontent.com/125117631/230786068-b24a8639-ca5e-4ccd-b3c2-d9ed13a924bd.png)
 
+
 - **Modified Docker compose to use only user specific network**
 ** **
 
@@ -133,17 +146,21 @@ networks:
 
 - **Generated env from Ruby [scripts](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/tree/main/erb) for Docker**
 
-```
+```sh
 ./bin/backend/generate-env
 ```
+
+```sh
+./bin/frontend/generate-env
 ```
-bin/frontend/generate-env
-```
+
 - **Resolved refresh token issue**
+** **
 
 ![Token issue resolved](https://user-images.githubusercontent.com/125117631/230786533-eebe12de-ba51-4160-983b-e3d012f55619.png)
 
 - **Resolved Timezone issue on Cruddur app (including messaging)**
+** **
 
 ![T1](https://user-images.githubusercontent.com/125117631/230787443-f0c9df47-37d6-4deb-bc2a-c375f7e6bd5c.png)
 
