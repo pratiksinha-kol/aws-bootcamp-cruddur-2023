@@ -39,3 +39,11 @@ docker build \
 -f Dockerfile.prod \
 .
 ```
+
+- **Using domain name to access ECS Service**
+** **
+
+![R53 frontend](https://user-images.githubusercontent.com/125117631/230788377-49b45881-9c1e-4fe9-929f-b0db5ce2eb11.png)
+
+![R53 backend](https://user-images.githubusercontent.com/125117631/230788385-24b25f6e-54d1-4766-abea-daa23b11126a.png)
+
