@@ -1,7 +1,11 @@
 SELECT 
-    users.uuid,
-    users.handle,
-    users.display_name,
+    (
+        SELECT COALESCE(row_to_json(object_row),'{}'::json) FROM (
+            SELECT
+                users.uuid,
+                users.handle,
+                users.display_name
+    ) object_row) as profile,
     (
         SELECT COALESCE(array_to_json(array_agg(row_to_json(array_row))),'[]'::json) FROM (
             SELECT 
