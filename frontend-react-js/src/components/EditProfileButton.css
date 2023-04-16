@@ -1,9 +1,9 @@
 .profile-edit-button {
     border: solid 1px rgba(255,255,255,0.5);
-    padding: 12px 20px;
+    padding: 20px 20px;
     font-size: 18px;
     background: none;
-    border-radius: 999px;
+    border-radius: 8px;
     color: rgba(255,255,255,0.8);
     cursor: pointer;
   }
