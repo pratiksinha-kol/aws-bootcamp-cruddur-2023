@@ -17,13 +17,13 @@ export default function ProfileForm(props) {
   const s3uploadkey = async (event)=> {
     try {
       console.log('s3upload')
-      const backend_url = "https://uhsyveopgi.execute-api.us-east-1.amazonaws.com/avatars/key_upload"
+      const backend_url = "https://h3npnw7gii.execute-api.us-east-1.amazonaws.com/avatars/key_upload"
       await getAccessToken()
       const access_token = localStorage.getItem("access_token")
       const res = await fetch(backend_url, {
         method: "POST",
         headers: {
-          'Origin': "https://3000-pratiksinha-awsbootcamp-thy08tpgtx9.ws-us94.gitpod.io",
+          'Origin': "https://3000-pratiksinha-awsbootcamp-0nh308mn2jh.ws-us94.gitpod.io",
           'Authorization': `Bearer ${access_token}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
