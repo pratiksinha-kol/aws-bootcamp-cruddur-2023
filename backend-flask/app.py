@@ -101,7 +101,7 @@ origins = [frontend, backend]
 
 @app.route('/api/health-check')
 def health_check():
-  return {'success': True}, 200
+  return {'success': True, 'ver': 1}, 200
 
 #@app.before_first_request
 with app.app_context():
