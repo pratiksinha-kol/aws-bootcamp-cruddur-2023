@@ -14,7 +14,7 @@ Description: |
 Parameters:
   VpcCidrBlock:
     Type: String
-    Default: 10.0.0.0/16
+    Default: 10.16.0.0/16
   Az1:
     Type: AWS::EC2::AvailabilityZone::Name
     Default: us-east-1a
@@ -22,12 +22,13 @@ Parameters:
     Description: "Comma-delimited list of CIDR blocks for our private public subnets"
     Type: CommaDelimitedList
     Default: >
-      10.0.0.0/24, 
-      10.0.4.0/24, 
-      10.0.8.0/24, 
-      10.0.12.0/24,
-      10.0.16.0/24,
-      10.0.20.0/24
+      10.16.0.0/20, 
+      10.16.16.0/20, 
+      10.16.32.0/20, 
+      10.16.48.0/20,
+      10.16.64.0/20,
+      10.16.80.0/20,
+      10.16.96.0/20
   Az2:
     Type: AWS::EC2::AvailabilityZone::Name
     Default: us-east-1b
