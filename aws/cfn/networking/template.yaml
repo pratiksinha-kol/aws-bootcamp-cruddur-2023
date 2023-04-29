@@ -192,7 +192,7 @@ Outputs:
       Name: !Sub "${AWS::StackName}SubnetCidrBlocks"
   SubnetIds:
     Value: !Join 
-      - ","
+      - ", "
       - - !Ref SubnetPub1
         - !Ref SubnetPub2
         - !Ref SubnetPub3
@@ -203,7 +203,7 @@ Outputs:
       Name: !Sub "${AWS::StackName}SubnetIds"
   AvailabilityZones:
     Value: !Join 
-      - ","
+      - ", "
       - - !Ref Az1
         - !Ref Az2
         - !Ref Az3
