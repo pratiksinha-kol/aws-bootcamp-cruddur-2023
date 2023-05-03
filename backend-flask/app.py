@@ -94,30 +94,33 @@ RequestsInstrumentor().instrument()
 # Rollbar init code
 rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
 
+
+frontend = os.getenv('FRONTEND_URL')
+backend = os.getenv('BACKEND_URL')
+origins = [frontend, backend]
+
 @app.route('/api/health-check')
 def health_check():
-  return {'success': True}, 200
+  return {'success': True, 'ver': 1}, 200
 
-@app.before_first_request
-def init_rollbar():
-    """init rollbar module"""
-    rollbar.init(
+#@app.before_first_request
+with app.app_context():
+    def init_rollbar():
+        """init rollbar module"""
+        rollbar.init(
         # access token
-        rollbar_access_token,
+            rollbar_access_token,
         # environment name
         'production',
         # server root directory, makes tracebacks prettier
-        root=os.path.dirname(os.path.realpath(__file__)),
+            root=os.path.dirname(os.path.realpath(__file__)),
         # flask already sets up logging
-        allow_logging_basic_config=False)
+            allow_logging_basic_config=False)
 
-    # send exceptions from `app` to rollbar, using flask's signal system.
-    got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
+        # send exceptions from `app` to rollbar, using flask's signal system.
+        got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
 
 
-    frontend = os.getenv('FRONTEND_URL')
-    backend = os.getenv('BACKEND_URL')
-    origins = [frontend, backend]
 
     # cors = CORS(
     #  app,
@@ -127,13 +130,13 @@ def init_rollbar():
     #  methods="OPTIONS,GET,HEAD,POST"
     # )
 
-    cors = CORS(
-    app,
-    resources={r"/api/*": {"origins": origins}},
-    headers=['Content-Type', 'Authorization'],
-    expose_headers='Authorization',
-    methods="OPTIONS,GET,HEAD,POST"
-    )
+cors = CORS(
+app,
+resources={r"/api/*": {"origins": origins}},
+headers=['Content-Type', 'Authorization'],
+expose_headers='Authorization',
+methods="OPTIONS,GET,HEAD,POST"
+)
 
     # Cloudwatch ------>
     # @app.after_request

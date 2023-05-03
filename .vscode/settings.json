@@ -1,5 +1,19 @@
 {
     "githubPullRequests.ignoredPullRequestBranches": [
         "main"
+    ],
+    "yaml.customTags": [
+        "!Sub",
+        "!Ref",
+        "!Select",
+        "!GetAtt",
+        "!Join",
+        "!Select sequence",
+        "!split sequence",
+        "!Join sequence",
+        "!Import",
+        "!GetAtt",
+        "!GetAZs",
+        "!FindInMap"
     ]
 }

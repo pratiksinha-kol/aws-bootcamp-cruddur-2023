@@ -1,0 +1,7 @@
+[deploy]
+bucket = 'cfn-artifacts-cruddur-pratiksinha'
+region = 'us-east-1'
+stack_name = 'CrdCluster'
+
+[parameters]
+CertificateArn = ''
