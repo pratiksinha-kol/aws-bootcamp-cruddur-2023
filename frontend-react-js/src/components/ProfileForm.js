@@ -74,7 +74,7 @@ export default function ProfileForm(props) {
         }})
 
       if (res.status === 200) {
-        console.log('presigned url',data);
+        console.log('presigned url',presignedurl);
         console.log("Uploaded");
       } else {
         console.log(res)
