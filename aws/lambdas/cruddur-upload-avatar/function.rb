@@ -10,24 +10,28 @@ def handler(event:, context:)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://3000-omenking-awsbootcampcru-2n1d6e0bd1f.ws-us94.gitpod.io",
+        "Access-Control-Allow-Origin": "https://3000-pratiksinha-awsbootcamp-zmq7mvpk36i.ws-us96b.gitpod.io",
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200
     }
   else
     token = event['headers']['authorization'].split(' ')[1]
-    puts({step: 'presignedurl', access_token: token}.to_json)
+    
 
     body_hash = JSON.parse(event["body"])
     extension = body_hash["extension"]
 
-    decoded_token = JWT.decode token, nil, false
-    cognito_user_uuid = decoded_token[0]['sub']
+    #decoded_token = JWT.decode token, nil, false
+    #cognito_user_uuid = decoded_token[0]['sub']
+    
+    cognito_user_id = event["requestContext"]["authorizer"]["lambda"]["sub"]
+    puts({step: 'presignedurl', access_token: token}.to_json)
 
     s3 = Aws::S3::Resource.new
     bucket_name = ENV["UPLOADS_BUCKET_NAME"]
-    object_key = "#{cognito_user_uuid}.#{extension}"
+    #object_key = "#{cognito_user_uuid}.#{extension}"
+    object_key = "#{cognito_user_id}.#{extension}"
 
     puts({object_key: object_key}.to_json)
 
@@ -38,7 +42,7 @@ def handler(event:, context:)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://3000-pratiksinha-awsbootcamp-nq16v02t4fk.ws-us95.gitpod.io",
+        "Access-Control-Allow-Origin": "https://3000-pratiksinha-awsbootcamp-zmq7mvpk36i.ws-us96b.gitpod.io",
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200, 
