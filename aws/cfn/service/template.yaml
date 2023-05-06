@@ -102,7 +102,9 @@ Resources:
       LaunchType: FARGATE
       LoadBalancers:
       # TODO - UPDATE THIS
-        - TargetGroupArn: 'arn:aws:elasticloadbalancing:us-east-1:999884903760:targetgroup/CrdClusterBackendTG/d26d48abf5527f17'
+        - TargetGroupArn:
+            Fn::ImportValue:
+              !Sub "${ClusterStack}BackendTGArn"
           ContainerName: 'backend-flask'
           ContainerPort: !Ref ContainerPort
       NetworkConfiguration:
