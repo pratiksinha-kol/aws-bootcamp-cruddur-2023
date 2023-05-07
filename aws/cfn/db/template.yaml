@@ -9,7 +9,7 @@ Parameters:
     Default: 0
   DBInstanceClass:
     Type: String
-    Default: db.t4g.micro
+    Default: db.t3.micro
 
 Resources:
   # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbinstance.html
