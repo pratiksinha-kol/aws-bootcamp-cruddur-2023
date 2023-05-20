@@ -15,5 +15,8 @@
         "!GetAtt",
         "!GetAZs",
         "!FindInMap"
-    ]
+    ],
+    "yaml.schemas": {
+        "/workspace/aws-bootcamp-cruddur-2023/aws/cfn/service/template.yaml": "template.yaml"
+    }
 }
