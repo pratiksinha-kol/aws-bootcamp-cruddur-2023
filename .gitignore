@@ -1,3 +1,5 @@
 docker/dynamodb/shared-local-instance.db
 *.env
 node_modules
+.aws-sam
+build.toml
