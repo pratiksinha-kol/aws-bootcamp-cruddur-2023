@@ -148,7 +148,7 @@ Resources:
           HealthCheck:
             Command:
               - 'CMD-SHELL'
-              - 'python /backend-flask/bin/health-check'
+              - 'python /backend-flask/bin/flask/health-check'
             Interval: 30
             Timeout: 5
             Retries: 3
@@ -253,6 +253,11 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
         - arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
+Outputs:
+  ServiceName:
+    Value: !GetAtt FargateService.Name
+    Export:
+      Name: !Sub "${AWS::StackName}ServiceName"
 # Outputs:
 #   ServiceSecurityGroupId:
 #     Value: !GetAtt ServiceSG.GroupId
