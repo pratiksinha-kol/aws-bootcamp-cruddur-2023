@@ -4,7 +4,7 @@ region = 'us-east-1'
 stack_name = 'CrdFrontend'
 
 [parameters]
-CertificateArn = 'arn:aws:acm:ca-central-1:387543059434:certificate/3c49f37a-a67c-43a4-adb0-53e38d8892dd'
-WwwBucketName = 'www.cruddur.com'
-RootBucketName = 'cruddur.com'
-HostedZoneId = 'Z08803681DMUOOMUA61TQ'
+CertificateArn = 'arn:aws:acm:us-east-1:999884903760:certificate/a4061351-5084-4bf3-99ec-49847586b0cb'
+WwwBucketName = 'www.pratiksinha.link'
+RootBucketName = 'pratiksinha.link'
+HostedZoneId = 'Z09294913SOJW9GFCK0T1'
