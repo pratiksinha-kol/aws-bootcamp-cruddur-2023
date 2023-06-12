@@ -29,7 +29,7 @@ Resources:
             Principal: '*'
   WWWBucket:
     # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
-    Type: 'AWS::S3::Bucket'
+    Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref WwwBucketName
       WebsiteConfiguration:
@@ -37,7 +37,7 @@ Resources:
           HostName: !Ref RootBucketName
   RootBucket:
     # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
-    Type: 'AWS::S3::Bucket'
+    Type: AWS::S3::Bucket
     #DeletionPolicy: Retain
     Properties:
       BucketName: !Ref RootBucketName
@@ -51,7 +51,7 @@ Resources:
       Name: !Sub ${RootBucketName}.
       Type: A
       AliasTarget:
-        DNSName: !GetAtt CloudFrontDistribution.DomainName
+        DNSName: !GetAtt Distribution.DomainName
         HostedZoneId: !Ref HostedZoneId
   WwwBucketDomain:
     Type: AWS::Route53::RecordSet
@@ -60,7 +60,7 @@ Resources:
       Name: !Sub ${WwwBucketName}.
       Type: A
       AliasTarget:
-        DNSName: !GetAtt CloudFrontDistribution.DomainName
+        DNSName: !GetAtt Distribution.DomainName
         HostedZoneId: !Ref HostedZoneId
   Distribution:
     # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudfront-distribution.html
@@ -68,8 +68,8 @@ Resources:
     Properties:
       DistributionConfig:
         Aliases:
-          - cruddur.com
-          - www.cruddur.com
+          - pratiksinha.link
+          - www.pratiksinha.link
         Comment: Frontend React Js for Cruddur
         Enabled: true
         HttpVersion: http2and3 
@@ -86,5 +86,5 @@ Resources:
               Forward: none
           ViewerProtocolPolicy: redirect-to-https
         ViewerCertificate:
-          AcmCertificateArn: !Ref AcmCertificateArn
+          AcmCertificateArn: !Ref CertificateArn
           SslSupportMethod: sni-only
