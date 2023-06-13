@@ -1,0 +1,9 @@
+[deploy]
+bucket = 'cfn-artifacts-cruddur-pratiksinha'
+region = 'us-east-1'
+stack_name = 'CrdSyncRole'
+
+[parameters]
+GitHubOrg = 'pratiksinha-ans'
+RepositoryName = 'aws-bootcamp-cruddur-2023'
+OIDCProviderArn = ''
