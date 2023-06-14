@@ -8,11 +8,10 @@ tasks:
       cd $THEIA_WORKSPACE_ROOT
   - name: cfn
     before:
-      bundle update --bundler
       pip install cfn-lint
       gem install cfn-toml
       cargo install cfn-guard
-      
+      bundle update --bundler
   - name: aws-cli
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
