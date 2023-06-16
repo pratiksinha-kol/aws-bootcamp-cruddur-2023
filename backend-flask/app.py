@@ -143,6 +143,12 @@ expose_headers='Authorization',
 methods="OPTIONS,GET,HEAD,POST"
 )
 
+def model_json(model):
+  if model['errors'] is not None:
+    return model['errors'], 422
+  else:
+    return model['data'], 200
+
 @app.route('/api/health-check')
 def health_check():
   return {'success': True, 'ver': 1}, 200
