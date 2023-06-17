@@ -44,11 +44,6 @@ from services.update_profile import *
 
 app = Flask(__name__)
 
-# cognito_jwt_token = CognitoJWTToken(
-# user_pool_id=os.getenv("AWS_COGNITO_USER_POOL_ID"),
-# user_pool_client_id=os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID"),
-# region=os.getenv("AWS_DEFAULT_REGION")
-# )
 
 
 ## Initialization ==========>
@@ -58,19 +53,6 @@ with app.app_context():
 
 init_honeycomb(app)
 init_cors(app)
-
-
-
-    # cors = CORS(
-    #  app,
-    #  resources={r"/api/*": {"origins": origins}},
-    #  expose_headers="location,link",
-    #  allow_headers="content-type,if-modified-since",
-    #  methods="OPTIONS,GET,HEAD,POST"
-    # )
-
-    
-
 
 
 
@@ -108,21 +90,8 @@ def data_messages(message_group_uuid):
         cognito_user_id=g.cognito_user_id,
         message_group_uuid=message_group_uuid
         )
-    return model_json(model)    
-        
+    return model_json(model)
 
-@app.route("/api/profile/update", methods=['POST','OPTIONS'])
-@cross_origin()
-@jwt_required()
-def data_update_profile():
-  bio          = request.json.get('bio',None)
-  display_name = request.json.get('display_name',None)
-  model = UpdateProfile.run(
-      cognito_user_id=g.cognito_user_id,
-      bio=bio,
-      display_name=display_name
-  )
-  return model_json(model)
   
 
 @app.route("/api/messages", methods=['POST', 'OPTIONS'])
@@ -148,7 +117,7 @@ def data_create_message():
          message_group_uuid=message_group_uuid,
          cognito_user_id=g.cognito_user_id
       )
-      return model_json(model)    
+      return model_json(model)
 
 def default_home_feed(e):
   # unauthenicatied request
@@ -211,6 +180,20 @@ def data_activities_reply(activity_uuid):
 def data_users_short(handle):
   data = UsersShort.run(handle)
   return data, 200
+
+@app.route("/api/profile/update", methods=['POST','OPTIONS'])
+@cross_origin()
+@jwt_required()
+def data_update_profile():
+  bio          = request.json.get('bio',None)
+  display_name = request.json.get('display_name',None)
+  model = UpdateProfile.run(
+      cognito_user_id=g.cognito_user_id,
+      bio=bio,
+      display_name=display_name
+  )
+  return model_json(model)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
