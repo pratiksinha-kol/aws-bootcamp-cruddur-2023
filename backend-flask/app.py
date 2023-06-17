@@ -5,6 +5,7 @@ from flask import Flask
 from flask import request,  g
 from flask_cors import CORS, cross_origin
 
+from aws_xray_sdk.core import xray_recorder
 
 from lib.rollbar import init_rollbar
 from lib.xray import init_xray
@@ -51,7 +52,7 @@ app = Flask(__name__)
 
 
 ## Initialization ==========>
-init_xray()
+init_xray(app)
 with app.app_context():
     rollbar = init_rollbar()
 
