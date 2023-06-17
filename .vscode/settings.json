@@ -14,9 +14,13 @@
         "!Import",
         "!GetAtt",
         "!GetAZs",
-        "!FindInMap"
+        "!FindInMap",
+        "!Equals",
+        "!Equals sequence",
+        "!If sequence",
+        "!If"
     ],
     "yaml.schemas": {
-        "/workspace/aws-bootcamp-cruddur-2023/aws/cfn/service/template.yaml": "template.yaml"
+        "/workspace/aws-bootcamp-cruddur-2023/aws/cfn/service/template.yaml": "template.yaml",
     }
 }

@@ -6,11 +6,12 @@ tasks:
       unzip aws-sam-cli-linux-x86_64.zip -d sam-installation
       sudo ./sam-installation/install
       cd $THEIA_WORKSPACE_ROOT
-  - name: cfn-lint
-    before: 
+  - name: cfn
+    before:
       pip install cfn-lint
-      cargo install cfn-guard
       gem install cfn-toml
+      cargo install cfn-guard
+      bundle update --bundler
   - name: aws-cli
     env:
       AWS_CLI_AUTO_PROMPT: on-partial

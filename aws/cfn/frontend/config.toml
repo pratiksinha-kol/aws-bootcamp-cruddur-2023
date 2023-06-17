@@ -1,0 +1,9 @@
+[deploy]
+bucket = 'cfn-artifacts-cruddur-pratiksinha'
+region = 'us-east-1'
+stack_name = 'CrdFrontend'
+
+[parameters]
+CertificateArn = 'arn:aws:acm:us-east-1:999884903760:certificate/a4061351-5084-4bf3-99ec-49847586b0cb'
+WwwBucketName = 'www.pratiksinha.link'
+RootBucketName = 'pratiksinha.link'
