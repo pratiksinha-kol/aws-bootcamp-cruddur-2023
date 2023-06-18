@@ -3,8 +3,22 @@
   flex-direction: column;
   border-bottom: solid 1px rgb(149, 134, 12);
   overflow: hidden;
+
+}
+
+.replies {
+  padding-left: 24px;
+  background: rgba(255,255,255,0.15);
+}
+
+.replies activity_item {
+  background: var(--fg);
+}
+
+.activity_main {
   padding: 16px;
 }
+
 .activity_item:last-child {
   border-bottom: none;
 }
