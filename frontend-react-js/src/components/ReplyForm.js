@@ -9,6 +9,7 @@ import ActivityContent  from '../components/ActivityContent';
 export default function ReplyForm(props) {
   const [count, setCount] = React.useState(0);
   const [message, setMessage] = React.useState('');
+  const [errors, setErrors] = React.useState([]);
 
   const classes = []
   classes.push('count')
@@ -54,6 +55,9 @@ export default function ReplyForm(props) {
         console.log(res)
       }
     } catch (err) {
+      setErrors({
+        generic_500: "SERVER ENCOUNTERED AN ERROR"
+      })
       console.log(err);
     }
   }
