@@ -8,7 +8,9 @@ import DesktopSidebar     from 'components/DesktopSidebar';
 import ActivityFeed from 'components/ActivityFeed';
 import ActivityForm from 'components/ActivityForm';
 import ReplyForm from 'components/ReplyForm';
-import {checkAuth, getAccessToken} from 'lib/CheckAuth';
+import {checkAuth} from 'lib/CheckAuth';
+
+import {get} from 'lib/Requests';
 
 // [TODO] Authenication
 //import Cookies from 'js-cookie'
@@ -23,27 +25,11 @@ export default function HomeFeedPage() {
   
 
   const loadData = async () => {
-    try {
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/home`
-      await getAccessToken()
-      const access_token = localStorage.getItem("access_token")
-      console.log('access_token',access_token)
-      const res = await fetch(backend_url, {
-        headers: {
-          Authorization: `Bearer ${access_token}`
-        },
-        method: "GET"
-      });
-      let resJson = await res.json();
-      if (res.status === 200) {
-        setActivities(resJson)
-      } else {
-        console.log(res)
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+      const url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/home`
+      get(url,null,function(data){
+        setActivities(data)
+      })
+  }
 
 
   React.useEffect(()=>{

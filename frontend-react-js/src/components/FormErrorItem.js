@@ -1,5 +1,6 @@
 export default function FormErrorItem(props) {
     const render_error = () => {
+      console.log('RENDER ERROR', props.err_code)
       switch (props.err_code)  {
         case 'generic_500':
           return "An internal server error has occured"
@@ -27,10 +28,10 @@ export default function FormErrorItem(props) {
         case 'message_group_uuid_blank':
           return "The message group cannot be blank"
           break;
-        case 'user_reciever_handle_blank':
+        case 'user_receiver_handle_blank':
           return "You need to send a message to a valid user"
           break;
-        case 'user_reciever_handle_blank':
+        case 'user_receiver_handle_blank':
           return "You need to send a message to a valid user"
           break;
         // Profile

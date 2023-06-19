@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 //import Cookies from 'js-cookie'
 import { Auth } from 'aws-amplify';
 
+import FormErrors from '../components/FormErrors';
 
 export default function SigninPage() {
 
@@ -58,10 +59,7 @@ export default function SigninPage() {
     setPassword(event.target.value);
   }
 
-  let el_errors;
-  if (errors){
-    el_errors = <div className='errors'>{errors}</div>;
-  }
+
 
   return (
     <article className="signin-article">
@@ -92,7 +90,7 @@ export default function SigninPage() {
               />
             </div>
           </div>
-          {el_errors}
+          <FormErrors errors={errors} />
           <div className='submit'>
             <Link to="/forgot" className="forgot-link">Forgot Password?</Link>
             <button type='submit'>Sign In</button>
