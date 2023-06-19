@@ -17,7 +17,6 @@ export default function ReplyForm(props) {
   }
 
   const onsubmit = async (event) => {
-    console.log('replyAcitivity',props.activity)
     event.preventDefault();
     try {
       const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/${props.activity.uuid}/reply`
@@ -51,6 +50,7 @@ export default function ReplyForm(props) {
         setMessage('')
         props.setPopped(false)
       } else {
+        console.log('====  TOTALLY DIFFERENT ERROR  .....')
         console.log(res)
       }
     } catch (err) {
