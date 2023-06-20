@@ -3,8 +3,16 @@
   flex-direction: column;
   border-bottom: solid 1px rgb(149, 134, 12);
   overflow: hidden;
-
 }
+
+a.activity_item {
+  text-decoration: none;
+}
+
+a.activity_item:hover {
+  background: rgba(255,255,255,0.15);
+}
+
 
 .replies {
   padding-left: 24px;

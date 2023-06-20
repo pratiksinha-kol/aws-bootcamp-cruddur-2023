@@ -1,30 +1,37 @@
 ## Flask
 from flask import request, g
 
-## Services
-from services.users_short import UsersShort
-from services.update_profile import UpdateProfile
-from services.user_activities import UserActivities
-
-## Helpers
-from lib.helpers import model_json
-
 ## Decorators
 from flask_cors import CORS, cross_origin
 from aws_xray_sdk.core import xray_recorder
 from lib.cognito_jwt_token import jwt_required
 
+## Services
+from services.users_short import UsersShort
+from services.update_profile import UpdateProfile
+from services.user_activities import UserActivities
+from services.show_activity import ShowActivity
+
+## Helpers
+from lib.helpers import model_json
+
 def load(app):
-    @app.route("/api/activities/@<string:handle>", methods=['GET'])
-    @xray_recorder.capture('activities-for-user-handle')
-    def data_handle(handle):
-        model = UserActivities.run(handle)
-        return model_json(model)
+  @app.route("/api/activities/@<string:handle>", methods=['GET'])
+  @xray_recorder.capture('activities-for-user-handle')
+  def data_users_activities(handle):
+    model = UserActivities.run(handle)
+    return model_json(model)
+
+    @app.route("/api/activities/@<string:handle>/status/<string:activity_uuid>", methods=['GET'])
+    @xray_recorder.capture('activities-for-user-uuid')
+    def data_show_activity(handle,activity_uuid):
+        data = ShowActivity.run(activity_uuid)
+        return data, 200
 
     @app.route("/api/users/@<string:handle>/short", methods=['GET'])
     def data_users_short(handle):
         data = UsersShort.run(handle)
-        return data, 200    
+        return data, 200
 
     @app.route("/api/profile/update", methods=['POST','OPTIONS'])
     @cross_origin()
