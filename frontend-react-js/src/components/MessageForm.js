@@ -4,7 +4,7 @@ import process from 'process';
 import { useParams } from 'react-router-dom';
 
 import {post} from 'lib/Requests';
-import FormErrors from '../components/FormErrors';
+import FormErrors from 'components/FormErrors';
 
 
 export default function ActivityForm(props) {

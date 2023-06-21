@@ -4,8 +4,8 @@ import process from 'process';
 
 import {post} from 'lib/Requests';
 
-import ActivityContent  from '../components/ActivityContent';
-import FormErrors from '../components/FormErrors';
+import ActivityContent  from 'components/ActivityContent';
+import FormErrors from 'components/FormErrors';
 
 export default function ReplyForm(props) {
   const [count, setCount] = React.useState(0);

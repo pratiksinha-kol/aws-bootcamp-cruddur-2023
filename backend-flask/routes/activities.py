@@ -10,17 +10,15 @@ from lib.cognito_jwt_token import jwt_required
 from lib.cors import init_cors
 
 # Services
-from services.home_activities import HomeActivities
-from services.notifications_activities import NotificationsActivities
-from services.create_activity import CreateActivity
-from services.search_activities import SearchActivities
-from services.show_activity import ShowActivity
-from services.create_reply import CreateReply
-
+from services.home_activities import *
+from services.notifications_activities import *
+from services.create_activity import *
+from services.search_activities import *
+from services.show_activity import *
+from services.create_reply import *
 
 ## Helpers
 from lib.helpers import model_json
-
 
 def load(app):
     def default_home_feed(e):
@@ -41,8 +39,6 @@ def load(app):
     def data_notifications():
         data = NotificationsActivities.run()
         return data, 200
-
-    
 
     @app.route("/api/activities/search", methods=['GET'])
     def data_search():

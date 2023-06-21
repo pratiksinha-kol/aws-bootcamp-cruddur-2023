@@ -19,7 +19,7 @@ a.activity_item:hover {
   background: rgba(255,255,255,0.15);
 }
 
-.replies activity_item {
+.replies .activity_item {
   background: var(--fg);
 }
 

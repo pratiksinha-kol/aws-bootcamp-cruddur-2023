@@ -93,8 +93,8 @@ export default function ProfileForm(props) {
     event.preventDefault();
     const url = `${process.env.REACT_APP_BACKEND_URL}/api/profile/update`
     const payload_data = {
-        bio: bio,
-        display_name: displayName
+      bio: bio,
+      display_name: displayName
     }
     put(url,payload_data,{
       auth: true,

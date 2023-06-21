@@ -23,7 +23,6 @@ export default function HomeFeedPage() {
   const [user, setUser] = React.useState(null);
   const dataFetchedRef = React.useRef(false);
   
-
   const loadData = async () => {
       const url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/home`
       get(url,{
@@ -63,7 +62,7 @@ export default function HomeFeedPage() {
             <div className='title'>Home</div>
           </div>
         <ActivityFeed 
-          title="Home" 
+          
           setReplyActivity={setReplyActivity} 
           setPopped={setPoppedReply} 
           activities={activities} 
