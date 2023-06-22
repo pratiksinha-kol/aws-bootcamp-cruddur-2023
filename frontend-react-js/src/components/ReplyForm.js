@@ -29,6 +29,9 @@ export default function ReplyForm(props) {
       auth: true,
       setErrors: setErrors,
       success: function(data){
+        if (props.setReplies) {
+          props.setReplies(current => [data,...current]);
+        }
         // add activity to the feed
         //let activities_deep_copy = JSON.parse(JSON.stringify(props.activities))
         //let found_activity = activities_deep_copy.find(function (element) {
@@ -43,7 +46,7 @@ export default function ReplyForm(props) {
         props.setPopped(false)
       }
     })
-    
+   
   }
 
   const textarea_onchange = (event) => {
@@ -57,9 +60,9 @@ export default function ReplyForm(props) {
   }
 
   const close = (event)=> {
-    if (event.target.classList.contains("reply_popup")) {
-      props.setPopped(false)
-    }
+   if (event.target.classList.contains("reply_popup")) {
+     props.setPopped(false)
+   }
   }
 
   if (props.popped === true) {
@@ -67,9 +70,9 @@ export default function ReplyForm(props) {
       <div className="popup_form_wrap reply_popup" onClick={close}>
         <div className="popup_form">
           <div className="popup_heading">
-          <div className="popup_title">   
+          <div className="popup_title">
             Reply to...
-          </div>  
+          </div>
           </div>
           <div className="popup_content">
             <div className="activity_wrap">
