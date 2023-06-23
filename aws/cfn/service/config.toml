@@ -6,3 +6,4 @@ stack_name = 'CrdSrvBackendFlask'
 [parameters]
 EnvFrontendUrl = 'https://pratiksinha.link'
 EnvBackendUrl = 'https://api.pratiksinha.link'
+DDBMessageTable = 'CrdDdb-DynamoDBTable-1IAO3IYLT4S97'
