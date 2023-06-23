@@ -10,6 +10,7 @@ import {put} from 'lib/Requests';
 export default function ProfileForm(props) {
   const [bio, setBio] = React.useState('');
   const [displayName, setDisplayName] = React.useState('');
+  const [errors, setErrors] = React.useState('');
 
   React.useEffect(()=>{
     //console.log('useEffects',props);
