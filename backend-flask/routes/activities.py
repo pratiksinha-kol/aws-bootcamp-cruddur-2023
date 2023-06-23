@@ -10,17 +10,15 @@ from lib.cognito_jwt_token import jwt_required
 from lib.cors import init_cors
 
 # Services
-from services.home_activities import HomeActivities
-from services.notifications_activities import NotificationsActivities
-from services.create_activity import CreateActivity
-from services.search_activities import SearchActivities
-from services.show_activity import ShowActivities
-from services.create_reply import CreateReply
-
+from services.home_activities import *
+from services.notifications_activities import *
+from services.create_activity import *
+from services.search_activities import *
+from services.show_activity import *
+from services.create_reply import *
 
 ## Helpers
 from lib.helpers import model_json
-
 
 def load(app):
     def default_home_feed(e):
@@ -42,8 +40,6 @@ def load(app):
         data = NotificationsActivities.run()
         return data, 200
 
-    
-
     @app.route("/api/activities/search", methods=['GET'])
     def data_search():
         term = request.args.get('term')
@@ -59,15 +55,12 @@ def load(app):
         model = CreateActivity.run(message, g.cognito_user_id, ttl)
         return model_json(model)
 
-    @app.route("/api/activities/<string:activity_uuid>", methods=['GET'])
-    def data_show_activity(activity_uuid):
-        data = ShowActivity.run(activity_uuid=activity_uuid)
-        return data, 200
+    
 
     @app.route("/api/activities/<string:activity_uuid>/reply", methods=['POST', 'OPTIONS'])
     @cross_origin()
+    @jwt_required()
     def data_activities_reply(activity_uuid):
-        user_handle = 'michaelcorleone'
         message = request.json['message']
-        model = CreateReply.run(message, user_handle, activity_uuid)
+        model = CreateReply.run(message, g.cognito_user_id, activity_uuid)
         return model_json(model)

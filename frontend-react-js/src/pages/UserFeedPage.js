@@ -2,15 +2,17 @@ import './UserFeedPage.css';
 import React from "react";
 import { useParams } from 'react-router-dom';
 
-import DesktopNavigation  from '../components/DesktopNavigation';
-import DesktopSidebar     from '../components/DesktopSidebar';
-import ActivityFeed from '../components/ActivityFeed';
-import ActivityForm from '../components/ActivityForm';
-import ProfileHeading from '../components/ProfileHeading';
-import ProfileForm from '../components/ProfileForm';
+import DesktopNavigation  from 'components/DesktopNavigation';
+import DesktopSidebar     from 'components/DesktopSidebar';
+import ActivityFeed from 'components/ActivityFeed';
+import ActivityForm from 'components/ActivityForm';
+import ProfileHeading from 'components/ProfileHeading';
+import ProfileForm from 'components/ProfileForm';
 
 // [TODO] Authenication
-import {checkAuth, getAccessToken} from '../lib/CheckAuth';
+import {checkAuth} from '../lib/CheckAuth';
+import {get} from 'lib/Requests';
+
 
 export default function UserFeedPage() {
   const [activities, setActivities] = React.useState([]);
@@ -24,38 +26,17 @@ export default function UserFeedPage() {
   // const title = `@${params.handle}`;
 
   const loadData = async () => {
-    try {
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/@${params.handle}`
-      await getAccessToken()
-      const access_token = localStorage.getItem("access_token")
-      const res = await fetch(backend_url, {
-        headers: {
-          Authorization: `Bearer ${access_token}`
-        },
-        method: "GET"
-      });
-      let resJson = await res.json();
-      if (res.status === 200) {
-        setProfile(resJson.profile)
-        setActivities(resJson.activities)        
-      } else {
-        console.log(res)
+    const url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/@${params.handle}`
+    get(url,{
+      auth: false,
+      success: function(data){
+        console.log('setprofile',data.profile)
+        setProfile(data.profile)
+        setActivities(data.activities)
       }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    })
+  }
 
-  // const checkAuth = async () => {
-  //   console.log('checkAuth')
-  //   // [TODO] Authenication
-  //   if (Cookies.get('user.logged_in')) {
-  //     setUser({
-  //       display_name: Cookies.get('user.name'),
-  //       handle: Cookies.get('user.username')
-  //     })
-  //   }
-  // };
 
   React.useEffect(()=>{
     //prevents double call
@@ -75,7 +56,7 @@ export default function UserFeedPage() {
           profile={profile}
           popped={poppedProfile} 
           setPopped={setPoppedProfile} 
-        />         
+        />
         <div className='activity_feed'>
           <ProfileHeading setPopped={setPoppedProfile} profile={profile}/>
           <ActivityFeed activities={activities} />

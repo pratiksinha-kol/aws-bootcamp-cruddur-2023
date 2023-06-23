@@ -54,5 +54,4 @@ for migration_file in migration_files:
         print('==== rollback: ',module_name)
         mod.migration.rollback()
         #timestamp = str(time.time()).replace(".","")
-        set_last_successful_run(file_time)  
-
+        set_last_successful_run(str(file_time))
