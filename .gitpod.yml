@@ -10,8 +10,8 @@ tasks:
     before:
       pip install cfn-lint
       gem install cfn-toml
-      cargo install cfn-guard
       bundle update --bundler
+      cargo install cfn-guard      
   - name: aws-cli
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
