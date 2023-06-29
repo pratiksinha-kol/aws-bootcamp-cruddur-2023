@@ -2,7 +2,7 @@
 
 ## Homework Task Performed for Week 8
 
-_AWS Cloud Development Kit (AWS CDK) is an open-source softftware development framework that supports language such as Python, C#, Java, TypeScript, JavaScript and Go. Using CDK, you can build cloud infrastructure with the programming language you are confortable with. In simpler terms, CDK is a tool to define your cloud infratsurcture as a as code._
+_AWS Cloud Development Kit (AWS CDK) is an open-source softftware development framework that supports language such as Python, C#, Java, TypeScript, JavaScript and Go. Using CDK, you can build cloud infrastructure with the programming language you are comfortable with. In simpler terms, CDK is a tool to define your cloud infratsurcture as a code._
 
 ***Task Performed from Live Stream***
 ** **
@@ -35,13 +35,22 @@ _CDK Synth is used to transform defined resource to turn into a CloudFormation t
 - **To Deploy, after performing bootstrap**
 ```cdk deploy```
 
-- **If you are unhappy with the deployment,and want to destroy it use the following command**
+- **If you are unhappy with the deployment and want to destroy it use the following command**
 ```cdk destroy``` (**BE VERY CAREFUL** :fearful:)
 ** **
 
 **Created a new [folder](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/tree/main/aws/lambdas/process-images) in the `aws/lambdas` by the name of `process-images`**
 
-- **Created a test.js for the lambda function**
+**I manually created a S3 bucket by the name of `cruddur-upload-avatars`, which will in future be used by Cloudfront. Also set Domain name in the Gitpod environment.**
+
+```
+export DOMAIN_NAME=pratiksinha.link	
+gp env DOMAIN_NAME=pratiksinha.link
+export UPLOADS_BUCKET_NAME=cruddur-upload-avatars	
+gp env UPLOADS_BUCKET_NAME=cruddur-upload-avatars	
+```
+
+- **Created a test.js for the Lambda function**
 ```ts
 const {getClient, getOriginalImage, processImage, uploadProcessedImage} = require('./s3-image-processing.js')
 
@@ -94,7 +103,7 @@ _Click on CLEAR at the top right corner_
  
 ![555](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/c929c8bf-4189-428c-8130-89cecb6cfebc)
 
-- **Lambda Code used for Avatar Upload**
+- **Lambda Code used for Avatar Upload (CruddurAvatarUpload)**
 ```rb
 require 'aws-sdk-s3'
 require 'json'
@@ -150,8 +159,8 @@ def handler(event:, context:)
 end # def handler
 ```
 
-- **Lambda Authorizer code used in API Gateway**
-```js
+- **Lambda Authorizer code used in API Gateway (CruddurApiGatewayLambdaAuthorizer)**
+```Node.js
 "use strict";
 const { CognitoJwtVerifier } = require("aws-jwt-verify");
 //const { assertStringEquals } = require("aws-jwt-verify/assert");
@@ -194,4 +203,27 @@ exports.handler = async (event) => {
 ```
 ** **
 
-**Faced CORS error along with 500 error while uploading image. Eventualy made it work by tweaking the Lambda Authorizer code and by extracting the bearer token which was causing the issue.**
+**Faced CORS error along with 500 error while uploading image. Eventually made it work by tweaking the Lambda Authorizer code and by extracting the bearer token which was causing the issue.**
+
+![11](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/e93279d1-4629-4530-9f3f-d63f62e8a04e)
+
+![111](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/123831fa-b6f0-42ef-bef5-7d1e1634afc2)
+
+![222](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/57f6a845-465a-4e2f-af42-7f582441e88c)
+
+![666](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/94668a83-e589-4c02-869d-75fc7f0f4e0f)
+
+![777](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/2b355d45-b36b-45fd-88e6-9564121fe682)
+
+**Rendered Image delivered from Cloudfront**
+
+![Rendering Avatar from CloudFront](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/811be74f-ecf2-4c12-bf82-43d897757d8a)
+
+**Performed these steps so that the above functionality doesn't fail**
+* Set `Access-Control-Allow-Origin` as your own frontend URL `function.rb` in `CruddurAvatarUpload`. 
+* Correctly extracting the authorization headertoken (I faced this issue) in `CruddurApiGatewayLambdaAuthorizer`.
+* In CruddurApiGatewayLambdaAuthorizer Lambda, set the Environment variables with correct Cognito User ID and and Client ID. 
+* In CruddurAvatarUpload Lambda, set the Environment variables with correct Upload Bucket name. 
+* Set the `gateway_url` and `backend_url` correctly in `frontend-react-js/src/components/ProfileForm.js`.
+
+** **
