@@ -72,13 +72,15 @@ async function main(){
 main()
 ```
 
+- **To test if the function is working correctly or not, use the [bash script](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/tree/main/bin/avatar) file to upload, clear and build.**
+
 - **Inside the `process-images` folder created above, run the following sript**
 
-```npm init -y```
+    ```npm init -y```
 
-```npm i sharp```
+    ```npm i sharp```
 
-```npm i @aws-sdk/client-s3```
+    ```npm i @aws-sdk/client-s3```
 
 - **For the said Lambda fuunction, created a trigger accordingly**
 
