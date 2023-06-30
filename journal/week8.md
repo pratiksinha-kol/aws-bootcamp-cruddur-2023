@@ -25,6 +25,7 @@ createBucket(bucketName: string): s3.IBucket {
     return bucket;
   }
 ```
+**CDK with create the bucket `cruddur-upload-avatars`**
 
 _CDK Synth is used to transform defined resource to turn into a CloudFormation template . Moreover, CDK bootstrap is used to provision resource before the deployment process_
 
@@ -37,18 +38,35 @@ _CDK Synth is used to transform defined resource to turn into a CloudFormation t
 
 - **If you are unhappy with the deployment and want to destroy it use the following command**
 ```cdk destroy``` (**BE VERY CAREFUL** :fearful:)
-** **
 
-**Created a new [folder](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/tree/main/aws/lambdas/process-images) in the `aws/lambdas` by the name of `process-images`**
+**I manually created a S3 bucket by the name of `assets.pratiksinha.link(asset.domainname)`, which will in future be used by Cloudfront. Also set Domain name in the Gitpod environment.**
 
-**I manually created a S3 bucket by the name of `cruddur-upload-avatars`, which will in future be used by Cloudfront. Also set Domain name in the Gitpod environment.**
-
+**Set these environment variables in Gitpod**
 ```
 export DOMAIN_NAME=pratiksinha.link	
 gp env DOMAIN_NAME=pratiksinha.link
 export UPLOADS_BUCKET_NAME=cruddur-upload-avatars	
 gp env UPLOADS_BUCKET_NAME=cruddur-upload-avatars	
 ```
+
+** **
+
+**Distribution of Avatars using CloudFront**
+_CloudFront is an content delivery service from AWS that cacches frequently accessed data that improves user experience. The latency is improved by using AWS Global caching infrastructure made possible with the help of edge locations_
+
+- **Go to CloudFront (available under Network and Content Deliver)**
+- **Create a new CloudFront distribution and select the origin name with the manual S3 bucket you had created earlier `assets.pratiksinha.link`**
+- **Restrict access to the aforementioned bucket by selecting `Origin Access Control Setting`**
+- **Create Control setting if already not created.**
+- **Redirect traffic from HTTP to HTTPS.**
+- **Under Cache key and origin requests, opt for CachingOptimized Caching Policy. Under the Origin request policy, select CORS-CustomOrigin policy and SimpleCORS under Response Headers Policy**
+- **For Alternate domain name (CNAME), use the assets.domainname. In my case, its assets.pratiksinha..link**
+- **Since, we are redirecting traffic to HTTPS, we need to select a TLS certificate for it. It can be choose from the already procured certificate or request one for it specifically**
+- **Don't forget to update the bucket policy with the OAI of the CloudFront. You can find it under `Origins` under the created CloudFront distribution. Select the `Origins`, and click      on Edit at the top right corner. You can click on `Copy Policy` to paste it in the Bucket permissions policy.**
+
+** **
+
+**Created a new [folder](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/tree/main/aws/lambdas/process-images) in the `aws/lambdas` by the name of `process-images`**
 
 - **Created a test.js for the Lambda function**
 ```ts
