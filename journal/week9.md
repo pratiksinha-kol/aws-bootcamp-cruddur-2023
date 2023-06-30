@@ -3,7 +3,7 @@
 ## Homework Task Performed for Week 9
 
 
-_A pipeline automates the process of software delivery by performing build and deploy process in an automated manner. In our case, we will utilize the benefits of AWS CodePipeline to make it work. This is not a free service, but if you are under Free Tier, you can use one pipeline without paying a penny. _  
+_A pipeline automates the process of software delivery by performing build and deploy process in an automated manner. In our case, we will utilize the benefits of AWS CodePipeline to make it work. This is not a free service, but if you are under Free Tier, you can use one pipeline without paying a penny._  
 
 _Source repository can be AWS's own CodeCommit, or Bitbucket, and even GitHub. AWS also offers source repository from the S3, and ECR. We will be using GitHub as it is where we have our source code. As we have a running ECS Fargate servcice, we will deploy our changes on it._  
 
@@ -64,7 +64,7 @@ artifacts:
 
 ** **
 
-###CodeBuild
+### CodeBuild
 
 
 - **Create a  build project and name it as `cruddur-backend-flask-bake-image`**
@@ -95,7 +95,7 @@ artifacts:
 ** **
 
 
-###CodePipeline
+### CodePipeline
 
 
 - **Create Pipeline and give it a name. In my case, it was `cruddur-backend-fargate`**
@@ -117,6 +117,7 @@ _Everytime a new changes are made to the prod branch of your repo, CodePipeline 
 
 _CICD in Action_
 
+
 ![11](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/594b0f33-7e55-40d2-8c03-d245597d8543)
 
 
@@ -132,3 +133,5 @@ _Deployment of changes on ECS Fargate service_
 
 
 ![ECS](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/1ae4966b-6322-4e44-a67b-003096cd9f2b)
+
+** **
