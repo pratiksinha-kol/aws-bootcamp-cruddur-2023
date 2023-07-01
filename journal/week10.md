@@ -1,4 +1,4 @@
-# Week 10 — CloudFormation Part 1
+# Week 10 — CloudFormation
 
 
 ## Homework Task Performed for Week 10
@@ -152,7 +152,10 @@ Under the AWS folder, create a new folder and name it as [`cfn`](https://github.
 
 - After a while, you will notice that backend service are no longer failing health checks.
 
-- To further confirm it, visit the Backend URL. `api.pratiksinha.link` or `api.<domain_name>`     
+- To further confirm it, visit the Backend URL. `api.pratiksinha.link` or `api.<domain_name>`
+
+
+![CFN](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/4f3c634c-cfe3-4951-87e3-c1c3cdfa4a7d)
 
 
 
@@ -234,6 +237,9 @@ BuildSpec = 'backend-flask/buildspec.yml'
 - Wait for the completion of the CloudFormation, now you need to connect your CICD Pipeine to your GitHub account. 
 
 -  For this, go to `Developer Tools`, then to `Connections`. You will need to click on the `Update Pending Connection`, and from there select `Select your GitHub repo username`. 
+
+
+![CFN CLSTER](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/assets/125117631/27f51ab3-ecfe-474e-b3e1-f816d7585a11)
 
 
 
