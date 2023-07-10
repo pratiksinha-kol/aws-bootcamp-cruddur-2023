@@ -2,7 +2,7 @@
 
 ## Homework Task Performed for Week X
 
-_For this last week of bootcamp, we have to make chnages and refactor few things so that our application runs without running into any issues on production. All these while we have performing our task on Gitpod and now its time to modify our application that it works without Gitpod_
+_For this last week of bootcamp, we have to make changes and refactor few things so that our application runs without running into any issues on production. All these while we have performing our task on Gitpod and now its time to modify our application that it works without Gitpod_
 
 _Since, we have already implemented Cloudformation for our services such as VPC, RDS Database, Fargate, ECS Backend service, DynamoDB and CICD, we have to integrate it with our production environment._ 
 
@@ -44,4 +44,24 @@ _Since, we have already implemented Cloudformation for our services such as VPC,
 
 - Assuming you are already running Postgres RDS Database using CloudFormation. We now need to make some changes for the data to reflect on the frontend of the website.
 
--
+- Check if the PROD_CONNECTION_URL is updated in your SSM Parameter Store.  
+
+- Go to Security Group section on you AWS portal and jot down RDS Security Group ID and Rule ID. We are going to need it. 
+
+- Edit Inbound Rules and Add a new rule to your RDS Security Group and on port 5432 that allows connection to your IP only. Name it as GitPod.
+
+- The newly created Security Group Rule ID needs to be updated and set it as your Gitpod env variables. Run the following `export GITPOD_IP=$(curl ifconfig.me)`, `./bin/rds/update-sg-rule`, `./bin/db/schema-load prod`. 
+
+- We are performing all the above steps so that we can access our production database from our local environment. 
+
+- To add column `bio` in the database, run `CONNECTION_URL=$PROD_CONNECTION_URL ./bin/db/migrate`.
+
+- Moreover, in the `cruddur-post-confirmation` Lambda function, chose the production RDS Endpoint as your `CONNECTION_URL`. Since, it is under VPC, you have make sure that the security group is allowed in the RDS Security Group.  
+
+
+** **
+
+
+### Date Time issue and Activity Page Changes
+
+**We also resolved the Date time [issue](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/commit/9d409ba85be48dfe9bb2932056b061e5d8a077b6) and [fixed](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/commit/a9fe51719e4aa9746bd7d8947c3f4c5d5801d75d) Activity Show page**  
