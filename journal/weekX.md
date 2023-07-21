@@ -62,6 +62,68 @@ _Since, we have already implemented Cloudformation for our services such as VPC,
 ** **
 
 
-### Date Time issue and Activity Page Changes
+### Date Time issue, Activity Page Changes and other additonal changes
 
-**We also resolved the Date time [issue](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/commit/9d409ba85be48dfe9bb2932056b061e5d8a077b6) and [fixed](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/commit/a9fe51719e4aa9746bd7d8947c3f4c5d5801d75d) Activity Show page**  
+_We also resolved the Date time [issue](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/commit/9d409ba85be48dfe9bb2932056b061e5d8a077b6) and [fixed](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/commit/a9fe51719e4aa9746bd7d8947c3f4c5d5801d75d) Activity Show page_  
+
+
+** **
+
+
+
+### Improved Error handling  
+
+
+_When we were working on the Cruddur homepage, error handling was not done properly and we had to inspect the webpage each time to know the exact reason for the webpage not functioning properly. To handle such errors in a more elegnat maaner, we altered the [code](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/commit/42b52a4ea82212c050e4001e183fcc74e5f426d4)._ 
+
+
+** ** 
+
+
+
+### Fix migration and made some UI changes
+
+_There was issue while running migration `bin/db/migrate`. Resolved this issue by [modifying](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/commit/b1f5b7f447b45f659bdfe5ad57290d2a39a2d773) the time of the file._
+
+_We also made changes to the Cruddur webpage to compensate for the code [changes](https://github.com/pratiksinha-kol/aws-bootcamp-cruddur-2023/commit/118aa0724ea47c33b43ae6e4c8febad6362d3bce) that were performed._
+
+_Moreover, as suggested we created an alternate account to ensure that we can post messages on Crud and also post reply_  
+
+
+** **
+
+
+### Cleanup
+
+
+_Since, we created a production DynamoDb, as a security practice, we need to create a new user with limited permissions. The new user would have full DynamoDb Access and nothing else. After creating the user, generate access keys and secret access key. Store them in Parameter Store._ 
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "dynamodb:PutItem",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:BatchWriteItem"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        }
+    ]
+}
+```
+
+_Now, we pull the code to the prod Github. It will automatically trigger a CICD pipeline event. Wait for it to complete_
+
+
+_Now, we need to sync it to the Prod frontend. Execute `./bin/frontned/static-build`. It will invalidate the CloudFront cache and it does take time. You can visit the AWS CloudFront page to see if the changes were performed successfully._
+
+
+
+** **
